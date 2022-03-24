@@ -67,15 +67,26 @@ class Field():
         self.field_dims = [y, x]
         self.monsters = []
         self.field = []
+        self.portal_is_active = False
         self.new_field()
 
+    def portal_active(self):
+        if self.portal_is_active == True:
+            curses.init_pair(2, curses.COLOR_GREEN, curses.COLOR_BLACK)
+            return True
+        else:
+            curses.init_pair(2, curses.COLOR_RED, curses.COLOR_BLACK)
+            return False
+
     def new_field(self):
+        self.portal_is_active = False
         self.monsters = []
         for i in range(0, randint(2, 8)):
             self.monsters.append(Monster(self.scr, self.field_dims[1], self.field_dims[0]))
         self.field = make_field(self.field_dims)
 
     def remove_monster(self, monster):
+        self.portal_is_active = True
         for i, m in enumerate(self.monsters):
             if m.id == monster.id:
                 self.monsters.pop(i)
@@ -289,8 +300,8 @@ def read_keys(scr, pc):
     elif k == ord('d'):
         pc.go_east()
     elif k == ord(' '):
+        if pc.start == False: pc.shoot()
         pc.start = False
-        pc.shoot()
     elif k == ord('r'):
         pc.ammo = 3
 
@@ -337,10 +348,10 @@ def update(field, pc):
         my_str = "BLAST THROUGH WALLS - |"
         print_in_center(field.scr, field.field_dims[0], offset, my_str, curses.color_pair(4))
         offset += 1
-        my_str = "KILL THE MONSTERS #"
+        my_str = "KILL ATLEAST ONE MONSTER #"
         print_in_center(field.scr, field.field_dims[0], offset, my_str, curses.color_pair(5))
         offset += 1
-        my_str = "GET TO THE PORTAL @"
+        my_str = "TO ACTIVATE THE PORTAL @"
         print_in_center(field.scr, field.field_dims[0], offset, my_str, curses.color_pair(2))
         offset += 4
 
@@ -382,10 +393,12 @@ def update(field, pc):
                     field.remove_monster(monster)
 
         #portalling
+        field.portal_active()
         if pc.on_portal() == True:
-            field.new_field()
-            pc.update_map(field.field)
-            pc.reset()
+            if field.portal_active() == True:
+                field.new_field()
+                pc.update_map(field.field)
+                pc.reset()
         #drawing
         for asset in [field, pc]:
             asset.draw()
