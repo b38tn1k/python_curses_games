@@ -2,7 +2,6 @@
 A little game made using python curses in a couple hours
 
 ```
-
 |--------------------------------------|
 |                                      |
 |      WELCOME TO THE PORTAL GAME      |
@@ -15,8 +14,8 @@ A little game made using python curses in a couple hours
 |              YOU ARE &               |
 |            PICK UP AMMO $            |
 |       BLAST THROUGH WALLS - |        |
-|         KILL THE MONSTERS #          |
-|         GET TO THE PORTAL @          |
+|      KILL ATLEAST ONE MONSTER #      |
+|       TO ACTIVATE THE PORTAL @       |
 |                                      |
 |                                      |
 |                                      |
