@@ -24,6 +24,7 @@ A little game made using python curses in a couple hours
 |--------------------------------------|
 ```
 
+It looks better with color :-(
 ```
 
 |--------------------------------------|
