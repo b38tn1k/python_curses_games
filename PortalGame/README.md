@@ -1,8 +1,11 @@
 # Portal Game
 
 Kill monsters!
+
 Travel through worlds!
+
 Die!
+
 It looks prettier with colour.
 
 Python 3.8.5
