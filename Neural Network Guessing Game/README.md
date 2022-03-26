@@ -1,8 +1,8 @@
 # Neural Network Guessing Game
 
 Guess the weight values and try beat the CPU!
-Python 3.8.5
-numpy 1.19.4
+- Python 3.8.5
+- numpy 1.19.4
 
 
 ```
